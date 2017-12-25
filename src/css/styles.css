@@ -1,0 +1,545 @@
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+/*------------------------------------*\
+    #MIXINS
+\*------------------------------------*/
+/**
+ * Add padding to container
+ */
+/**
+ * Resets right/left padding created by %padded-box, allowing elements within a
+ * padded-box-container to utilize its full width.
+ */
+/**
+ * Word-wrap mixin that breaks words that overflow width
+ * Adds manual hyphening (not supported by Blink).
+ */
+/**
+ * Maintains specified aspect ratio based on width/height relationship
+ * Src: https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/
+ */
+/*------------------------------------*\
+    #BUTTON
+\*------------------------------------*/
+/**
+ * Styling for custom button elements
+ */
+.button {
+  cursor: pointer;
+  transition: all 400ms ease;
+  /**
+  * .button--flex is used for buttons with icons as :before or :after-elements
+  * in order to center these icons vertically. Default .button does not use
+  * flexbox as it fails to wrap text in IE10. Use following markup:
+  *
+  * <a class="button button--flex">
+  *   <span>Button Text</span>
+  * </a>
+  */ }
+  .button__label {
+    font-size: 0;
+    height: 1px;
+    overflow: hidden;
+    display: block; }
+  .button--text {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: manual;
+    display: inline-block;
+    max-width: 100%;
+    padding: 10px 30px;
+    border-radius: 3px;
+    color: inherit;
+    background: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-family: "Rubik", sans-serif;
+    font-size: 21px;
+    transition: all 400ms ease ease; }
+  .button--primary {
+    background: #46cd8f;
+    color: #131114;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.32), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.4); }
+    .button--primary:hover {
+      background: #6ed8a7; }
+  .button--secondary {
+    background: #fff;
+    color: #634efb;
+    border: 1px solid #634efb; }
+    .button--secondary:hover {
+      background: #634efb;
+      color: #fff; }
+  .button--flex {
+    display: inline-flex;
+    align-items: center; }
+    .button--flex::before, .button--flex::after {
+      content: "";
+      display: block;
+      flex-shrink: 0; }
+    .button--flex span {
+      flex: 1 1 auto; }
+  .button--full-width {
+    display: block;
+    width: 100%; }
+    .button--full-width.button--flex {
+      justify-content: space-around; }
+  .button--icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around; }
+  .button--square, .button--toggle-search, .button--hamburger {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px; }
+    .button--square > .icon, .button--toggle-search > .icon, .button--hamburger > .icon {
+      margin: auto; }
+    @media screen and (min-width: 768px) {
+      .button--square, .button--toggle-search, .button--hamburger {
+        width: 64px;
+        height: 64px;
+        flex: 0 0 64px; } }
+  .button--toggle-search {
+    position: relative; }
+    .button--toggle-search .icon {
+      z-index: 2; }
+    .button--toggle-search .svg-icn-x {
+      display: none; }
+    .button--toggle-search::before {
+      position: absolute;
+      background-image: linear-gradient(to bottom, #ebebeb, #fff);
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      opacity: 0;
+      transition: opacity 800ms ease; }
+      @media screen and (min-width: 768px) {
+        .button--toggle-search::before {
+          background-image: linear-gradient(to top, #ebebeb, #fff); } }
+    .button--toggle-search-open::before {
+      opacity: 1; }
+    .button--toggle-search-open .svg-icn-x {
+      display: block; }
+    .button--toggle-search-open .svg-icn-search-white {
+      display: none; }
+  .button--submit-search {
+    background-color: transparent;
+    border: none; }
+  .button--hamburger {
+    background-color: #ebebeb;
+    box-shadow: inset 0 1px 1px 0 #fff;
+    position: relative; }
+    .button--hamburger::after {
+      top: 48px;
+      right: 0;
+      left: 0;
+      position: absolute;
+      width: 0;
+      height: 0;
+      content: '';
+      z-index: 2;
+      border-opposite-direction(bottom): 4px solid #ebebeb;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+      margin: 0 auto; }
+    .button--hamburger .svg-icn-x {
+      display: none; }
+    .button--hamburger-open::after {
+      content: none; }
+    .button--hamburger-open .svg-icn-x {
+      display: block; }
+    .button--hamburger-open .svg-icn-hamburger {
+      display: none; }
+  @media screen and (min-width: 768px) {
+    .button--mobile {
+      display: none; } }
+  .button--medium-screen {
+    display: none; }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      .button--medium-screen {
+        display: inline-flex; } }
+  .button--map {
+    align-items: center;
+    background: #007ebd;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+    color: #fff;
+    display: inline-flex;
+    font-size: 18px;
+    padding: 5px 16px;
+    position: relative; }
+    .button--map::after {
+      content: '';
+      display: inline-block;
+      margin: 1px 0 1px 12px; }
+    .button--map::before {
+      right: 0;
+      bottom: -5px;
+      left: 0;
+      position: absolute;
+      width: 0;
+      height: 0;
+      content: '';
+      z-index: 2;
+      border-opposite-direction(bottom): 6px solid #007ebd;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.16));
+      margin: 0 auto; }
+    .button--map:hover {
+      text-decoration: underline; }
+  .button--toggle-filter-menu {
+    display: inline-flex;
+    align-items: center;
+    background: #ebebeb;
+    padding: 8px 16px;
+    border: 1px solid rgba(0, 170, 255, 0.72);
+    box-shadow: none;
+    margin-bottom: 25px;
+    font-size: 19px; }
+    .button--toggle-filter-menu::after {
+      content: '';
+      display: inline-block;
+      margin: 0 0 0 12px; }
+
+.primary-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  @media screen and (min-width: 768px) {
+    .primary-nav {
+      display: flex; } }
+  @media screen and (max-width: 767px) {
+    .primary-nav li {
+      border-bottom: 1px solid #ebebeb; }
+      .primary-nav li:last-child {
+        border: none; } }
+  .primary-nav li a {
+    display: block;
+    padding: 10px 15px;
+    color: #634efb;
+    transition: 400ms ease; }
+    @media screen and (min-width: 768px) {
+      .primary-nav li a {
+        border: 1px solid transparent;
+        border-radius: 3px; } }
+    .primary-nav li a:hover {
+      background: #f0f7fa;
+      color: #f55858; }
+      @media screen and (min-width: 768px) {
+        .primary-nav li a:hover {
+          border-color: #99ddff; } }
+
+.site-header {
+  height: 100px; }
+
+#icon {
+  float: left; }
+
+@media screen and (max-width: 760px) {
+  #icon {
+    display: none; } }
+.primary-nav {
+  margin-top: 26px;
+  padding-left: 20px; }
+
+@media screen and (max-width: 760px) {
+  .primary-nav {
+    margin-top: 0; } }
+.primary-nav li a {
+  color: #000;
+  text-decoration: none; }
+
+.primary-nav li a:hover {
+  color: blue; }
+
+/* Main menu settings */
+.centeredmenu {
+  clear: both;
+  float: left;
+  width: 100%;
+  font-family: Verdana, Geneva, sans-serif;
+  /* Menu font */
+  font-size: 90%;
+  /* Menu text size */
+  z-index: 1;
+  /* This makes the dropdown menus appear above the page content below */
+  position: relative; }
+
+.centeredmenu ul {
+  padding: 0;
+  list-style: none;
+  position: relative; }
+
+.centeredmenu ul li {
+  margin: 0 0 0 1px;
+  padding: 0;
+  float: left;
+  position: relative;
+  top: 1px; }
+
+.centeredmenu ul li a {
+  display: block;
+  margin: 0;
+  line-height: 1em;
+  text-decoration: none; }
+
+.centeredmenu ul li.active a {
+  color: #fff;
+  background: #000; }
+
+.centeredmenu ul li a:hover {
+  color: #fff; }
+
+.centeredmenu ul li:hover a,
+.centeredmenu ul li.hover a {
+  /* This line is required for IE 6 and below */
+  background: #36f;
+  /* Top menu items background colour */
+  color: #fff; }
+
+/* Submenu items */
+.centeredmenu ul ul {
+  display: none;
+  /* Sub menus are hiden by default */
+  position: absolute;
+  top: 2em;
+  left: 0;
+  right: auto;
+  /*resets the right:50% on the parent ul */
+  width: 10em;
+  /* width of the drop-down menus */ }
+
+.centeredmenu ul ul li {
+  left: auto;
+  /*resets the left:50% on the parent li */
+  margin: 0;
+  /* Reset the 1px margin from the top menu */
+  clear: left;
+  width: 100%; }
+
+.centeredmenu ul ul li a,
+.centeredmenu ul li.active li a,
+.centeredmenu ul li:hover ul li a,
+.centeredmenu ul li.hover ul li a {
+  /* This line is required for IE 6 and below */
+  font-size: .8em;
+  font-weight: normal;
+  /* resets the bold set for the top level menu items */
+  background: #eee;
+  color: #444;
+  line-height: 1.4em;
+  /* overwrite line-height value from top menu */
+  border-bottom: 1px solid #ddd;
+  /* sub menu item horizontal lines */ }
+
+.centeredmenu ul ul li a:hover,
+.centeredmenu ul li.active ul li a:hover,
+.centeredmenu ul li:hover ul li a:hover,
+.centeredmenu ul li.hover ul li a:hover {
+  /* This line is required for IE 6 and below */
+  background: #36f;
+  /* Sub menu items background colour */
+  color: #fff; }
+
+/* Flip the last submenu so it stays within the page */
+.centeredmenu ul ul.last {
+  left: auto;
+  /* reset left:0; value */
+  right: 0;
+  /* Set right value instead */ }
+
+/* Make the sub menus appear on hover */
+.centeredmenu ul li:hover ul,
+.centeredmenu ul li.hover ul {
+  /* This line is required for IE 6 and below */
+  display: block;
+  /* Show the sub menus */ }
+
+@media screen and (max-width: 760px) {
+  .centeredmenu ul li {
+    clear: both; } }
+@media screen and (max-width: 760px) {
+  #icon {
+    display: none; } }
+body {
+  font: 110% Helvetica, sans-serif;
+  color: #333;
+  background-color: #007ebd;
+  width: 80%;
+  margin: 0 auto;
+  height: 800px;
+  clear: both;
+  padding-top: 24px; }
+
+hr {
+  border-color: #99ddff; }
+
+@media screen and (min-width: 700px) {
+  .main {
+    width: 90%; } }
+@media screen and (min-width: 1000px) {
+  .main {
+    width: 70%; } }
+#portrait {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+/* mongodb */
+.formula {
+  padding: 8px 0 0; }
+  .formula .name {
+    font-weight: 700; }
+  .formula .formel {
+    background-color: #fff;
+    margin: 0 0 8px;
+    padding: 8px;
+    border: 1px solid gray;
+    display: inline-block; }
+  .formula .description {
+    margin: 0 0 0 8px;
+    font-style: italic; }
+
+form input {
+  font-size: 16px;
+  padding: 4px;
+  margin: 0 auto;
+  display: block;
+  width: 70%; }
+form select {
+  font-size: 16px;
+  padding: 8px;
+  height: 40px;
+  margin: 0 auto;
+  display: block;
+  width: 70%; }
+form input[type="submit"] {
+  margin-bottom: 16px; }
+form .add {
+  margin: 0 0 0 8px; }
+
+.output {
+  height: 40px;
+  padding: 12px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 100%; }
+
+.animate {
+  opacity: 0;
+  animation: KEYFRAME-NAME 4s;
+  background-color: #4CAF50;
+  color: #000;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px; }
+
+.animateWarning {
+  opacity: 0;
+  animation: KEYFRAME-NAME 4s;
+  background-color: darkred;
+  color: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px; }
+
+@keyframes KEYFRAME-NAME {
+  0% {
+    opacity: 0; }
+  25% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+img#express {
+  border-radius: 3px;
+  display: block;
+  margin: 0 auto;
+  width: 80%; }
+
+.messages {
+  background-color: #eee;
+  padding: 12px;
+  height: 220px;
+  overflow: scroll;
+  scroll-behavior: auto;
+  color: #000;
+  border-radius: 3px; }
+
+.feedback {
+  color: #697130;
+  font-style: italic; }
+
+.main {
+  margin: 0 auto; }
+
+.chat h1,
+.chat p {
+  text-align: center; }
+
+.chat-input {
+  margin: 0 auto;
+  margin-top: 16px;
+  width: 500px; }
+
+input.form-control {
+  font-size: 16px;
+  padding: 4px;
+  margin: 0 0 8px;
+  width: 100%;
+  text-align: center;
+  border-radius: 3px; }
+
+.send-button {
+  font-size: 24px;
+  padding: 4px;
+  width: 100%; }
+
+.button {
+  width: 100%;
+  margin: 16px 0; }
+
+.site-footer {
+  background-color: #99ddff;
+  border-radius: 3px;
+  height: 100px;
+  padding: 8px;
+  margin: 20px 0;
+  text-align: center; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+.message, .success, .error, .warning {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333; }
+
+.success {
+  border-color: green; }
+
+.error {
+  border-color: red; }
+
+.warning {
+  border-color: yellow; }
+
+@media screen and (max-width: 1000px) {
+  .chat {
+    width: 100%; }
+
+  .chat-input {
+    width: 100%; } }
+
+/*# sourceMappingURL=styles.css.map */

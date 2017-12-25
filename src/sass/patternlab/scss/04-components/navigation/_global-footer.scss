@@ -1,0 +1,32 @@
+.global-footer {
+    &--left {
+        float:left;
+    }
+
+    &--right {
+        float:right;
+    }
+}
+
+.global-footer {
+    font-size: 110%;
+    font-family: $font-family-arvo;
+    height:200px;
+    background-color: $color-baby-blue;
+    color: $color-blueberry;
+    .copy {
+        padding:20px;
+        margin-top: 65px;
+    }
+
+    .list {
+        padding:20px;
+        list-style-type: none;
+    }
+}
+
+.global-footer--christmas {
+    font-family: $font-family-rubik;
+    background-color: $color-coral;
+    color: $color-white;
+}

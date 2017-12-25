@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    #MEDIA
+\*------------------------------------*/
+
+// Generic media element styling
+
+figure {
+  margin: 0;
+}
+
+iframe,
+svg,
+img {
+    max-width: 100%;
+}
+
+iframe {
+  border: none;
+}
