@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+    - "8"
+
+sudo: false
+
+git:
+    submodules: false
+
+cache:
+    directories:
+        - node_modules
+
+#before_script:
+    # Prepare for automated tests
+    #- npm install
+
+script:
+    # Run tests
+    - npm test
