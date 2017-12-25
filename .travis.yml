@@ -15,6 +15,7 @@ cache:
 before_script:
     # Prepare for automated tests
     - npm install
+    - npm run build
 
 script:
     # Run tests
