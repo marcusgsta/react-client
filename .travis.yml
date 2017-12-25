@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-    - "9.2.0"
+    - "8.9.3"
 
 sudo: false
 
@@ -15,8 +15,7 @@ cache:
 # before_script:
 #     # Prepare for automated tests
 #     - npm install
-before_install:
-  - npm install -g npm@latest
+before_install: if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 
 script:
     # Run tests
