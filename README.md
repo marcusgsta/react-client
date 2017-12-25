@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/marcusgsta/react-client.svg?branch=master)](https://travis-ci.org/marcusgsta/react-client)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/marcusgsta/ramverk2-app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/marcusgsta/ramverk2-app/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/marcusgsta/ramverk2-app/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/marcusgsta/ramverk2-app/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/marcusgsta/react-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/marcusgsta/react-client/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/marcusgsta/react-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/marcusgsta/react-client/?branch=master)
 
 
 

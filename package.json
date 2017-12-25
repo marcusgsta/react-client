@@ -1,5 +1,11 @@
 {
   "name": "react-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcusgsta/react-client.git"
+  },
+  "author": "Marcus Gustafsson",
+  "license": "MIT",
   "version": "1.0.0",
   "dependencies": {
     "enzyme": "^3.2.0",
