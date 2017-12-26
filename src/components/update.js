@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 export class Update extends Component {
     constructor(props) {
         super(props);
@@ -85,7 +86,7 @@ export class Update extends Component {
             body: JSON.stringify({"id": this.state.id, "name": this.state.name, "formula": this.state.formula, "description": this.state.description})
         };
 
-        fetch('http://localhost:1337/api/update', myInit)
+        fetch('/api/update', myInit)
             .then(results => {
                 if (results.ok) {
                     return results.json();
@@ -115,7 +116,7 @@ export class Update extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:1337/api/read')
+        fetch('/api/read')
             .then(results => {
                 if (results.ok) {
                     return results.json();

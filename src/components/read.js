@@ -12,7 +12,8 @@ export class Read extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:1337/api/read')
+        // fetch(this.state.url)
+        fetch('/api/read')
             .then(results => {
                 if (results.ok) {
                     return results.json();

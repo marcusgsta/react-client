@@ -56,7 +56,8 @@ export class Add extends Component {
             body: JSON.stringify({"name": this.state.name, "formula": this.state.formula, "description": this.state.description})
         };
 
-        fetch('http://localhost:1337/api/add', myInit)
+        // fetch(this.state.url, myInit)
+        fetch('/api/add', myInit)
             .then(results => {
                 if (results.ok) {
                     return results.json();

@@ -56,7 +56,7 @@ export class Remove extends Component {
             body: JSON.stringify({"id": this.state.id})
         };
 
-        fetch('http://localhost:1337/api/remove', myInit)
+        fetch('/api/remove', myInit)
             .then(results => {
                 if (results.ok) {
                     return results.json();
@@ -79,7 +79,7 @@ export class Remove extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:1337/api/read')
+        fetch('/api/read')
             .then(results => {
                 if (results.ok) {
                     return results.json();
