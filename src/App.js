@@ -14,10 +14,27 @@ import Read from './components/read.js';
 import Add from './components/add.js';
 import Remove from './components/remove.js';
 import Update from './components/update.js';
+import Login from './components/login/login.js';
+import Secret from './components/secret.js';
 // images
 import expressIcon from './img/express_icon.png';
 
 export class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            refresh: '',
+            output: '',
+            animate: '',
+            timeout: null
+        };
+    }
+
+    logout() {
+        localStorage.clear();
+        console.log("Logged out");
+    }
+
     render() {
         return (
             <Router>
@@ -37,6 +54,8 @@ export class App extends React.Component {
                                         <li><Link to="/remove">Remove</Link></li>
                                         <li><Link to="/update">Update</Link></li>
                                     </ul></li>
+                                <li><Link to="/login">Logga in</Link></li>
+                                <li><button className='btn' onClick={this.logout}>Logga ut</button></li>
                             </ul>
                         </div>
                     </div>
@@ -51,6 +70,8 @@ export class App extends React.Component {
                         <Route path="/add" component={Add}/>
                         <Route path="/remove" component={Remove}/>
                         <Route path="/update" component={Update}/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/secret" component={Secret}/>
                     </div>
                     <div className="site-footer">
                         Copyright (c) by Marcus Gustafsson

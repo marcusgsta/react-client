@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 
-export class Add extends Component {
+export class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
             nick: '',
-            gravatar: '',
             password: '',
             value: '',
-            description: '',
             output: '',
             animate: '',
             timeout: null
@@ -38,39 +35,48 @@ export class Add extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.name === '' || this.state.nick === '' || this.state.gravatar === '' || this.state.password === '') {
+        if (this.state.nick === '' || this.state.password === '') {
             console.log("found empty string");
             this.setState({output: "Vänligen skriv in värden i alla fält!"});
             this.setState({animate: "animateWarning"});
             this.resetMessages();
             return;
         }
-        console.log(typeof(this.state.name));
-        console.log('A name was submitted: ' + this.state.name);
         console.log('A nickname was submitted: ' + this.state.nick);
-        console.log('A gravatar was submitted: ' + this.state.gravatar);
-
+        console.log('A password was submitted: ' + this.state.password);
 
         const myInit = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             cache: 'default',
-            body: JSON.stringify({"name": this.state.name, "nick": this.state.nick, "gravatar": this.state.gravatar, "password": this.state.password})
+            body: JSON.stringify({"nick": this.state.nick, "password": this.state.password})
         };
 
-        // fetch(this.state.url, myInit)
-        fetch('/api/add', myInit)
+        fetch('/api/login', myInit)
             .then(results => {
                 if (results.ok) {
                     return results.json();
                 }
                 throw new Error('Network response was not ok.');
             }).then(data => {
-                this.setState({output: "Användare lades till i databas!"});
-                this.setState({animate: "animate"});
-                console.log(data);
-                console.log("state", data);
+                console.log(data.length !== 0);
+                if (data.length !== 0) {
+                    if (data.token) {
+                        console.log(data.token);
+                        // this.setState({"token": data.token});
+                        localStorage.setItem('token', data.token);
+                        this.setState({output: "Användare loggades in!"});
+                        this.setState({animate: "animate"});
+                        console.log(data);
+                        console.log("state", data);
+                        this.resetMessages();
+                        return;
+                    }
+                }
+                this.setState({output: "Inloggning misslyckades!"});
+                this.setState({animate: "animateWarning"});
                 this.resetMessages();
+                return;
             }).catch(error => {
                 console.log('There has been a problem with your fetch operation: ', error.message);
             });
@@ -79,14 +85,12 @@ export class Add extends Component {
     render() {
         return (
             <div>
-                <h2>Registrera ny användare</h2>
+                <h2>Logga in</h2>
                 <form className="db_form" onSubmit={this.handleSubmit}>
                     <div className="input">
-                        <input name="name" placeholder="Namn" type="text" value={this.state.name} onChange={this.handleChange}/><br />
                         <input name="nick" placeholder="Nick" type="text" value={this.state.nick} onChange={this.handleChange}/><br />
-                        <input name="gravatar" placeholder="Gravatar" type="text" value={this.state.gravatar} onChange={this.handleChange}/><br />
                         <input name="password" placeholder="Lösenord" type="password" value={this.state.password} onChange={this.handleChange}/><br />
-                        <input className="button button--text button--primary" type="submit" value="Lägg till"/>
+                        <input className="button button--text button--primary" type="submit" value="Logga in"/>
                     </div>
                 </form>
                 <div className={"output " + this.state.animate}>{this.state.output}</div>
@@ -94,4 +98,4 @@ export class Add extends Component {
         );
     }
 }
-export default Add;
+export default Login;

@@ -4,7 +4,7 @@ export class Remove extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formulas: [],
+            users: [],
             name: [],
             value: '',
             output: '',
@@ -37,17 +37,13 @@ export class Remove extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.id === '') {
-            console.log("No formula chosen!");
-            this.setState({output: "Vänligen välj en formel i tabellen först."});
+            console.log("No user chosen!");
+            this.setState({output: "Vänligen välj en användare."});
             this.setState({animate: "animateWarning"});
             this.resetMessages();
             return;
         }
-        //this.add(event);
-        //this.state.name.push(event.target.value);
-        console.log('A formula was submitted: ' + this.state.id);
-
-        //const myHeaders = new Headers();
+        console.log('A user was submitted: ' + this.state.id);
 
         const myInit = {
             method: 'DELETE',
@@ -64,18 +60,16 @@ export class Remove extends Component {
                 throw new Error("Network response was not ok.");
             }).then(data => {
                 this.setState({
-                    formulas: this.state.formulas.filter(formula => formula._id !== this.state.id)
+                    formulas: this.state.users.filter(user => user._id !== this.state.id)
                 });
                 console.log("state", data);
-                this.setState({output: "Formeln raderades!"});
+                this.setState({output: "Användaren raderades!"});
                 this.setState({animate: "animate"});
                 console.log(data);
                 this.resetMessages();
-                //this.setState({id: ''});
             }).catch(error => {
                 console.log("There was a problem with your fetch operation: ", error.message);
             });
-        //this.setState({id: ''});
     }
 
     componentDidMount() {
@@ -86,7 +80,7 @@ export class Remove extends Component {
                 }
                 throw new Error("Network response was not ok.");
             }).then(data => {
-                this.setState({formulas: data});
+                this.setState({users: data});
                 console.log("state", data);
             }).catch(error => {
                 console.log("There was a problem with your fetch operation: ", error.message);
@@ -95,14 +89,12 @@ export class Remove extends Component {
     render() {
         return (
             <div>
-                <h2>Radera från databas</h2>
-                <p>Detta är en demo av CRUD-operationer med hjälp av Mongodb.</p>
-                <p>Här kan du radera objekt ifrån databasen:</p>
+                <h2>Radera användare</h2>
                 <form onSubmit={this.handleSubmit}>
                     <select name="id" onChange={this.handleChange}>
-                        <option value="null">Välj formel</option>
+                        <option value="null">Välj användare</option>
                         {
-                            this.state.formulas.map((data, i) => {
+                            this.state.users.map((data, i) => {
                                 return <option key={i} value={data._id}>{data.name}</option>;
                             })
                         }
