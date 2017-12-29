@@ -28,12 +28,13 @@ export class Read extends Component {
     }
     render() {
         return (
-            <div>
-                <h2>Alla användare i databasen</h2>
+            <div className="users">
+                <h2>Användare</h2>
                 {
                     this.state.users.map((data, i) => {
                         return <div className="user" key={i}>
-                            <h3 className="name">{data.name}</h3> <div className="nick">{data.nick}</div><span className="gravatar"> {data.gravatar}</span></div>;
+                            {/* <span className="gravatar"> {data.gravatar}</span> */}
+                            <div className="nick">{data.nick}</div></div>;
                     })
                 }
             </div>

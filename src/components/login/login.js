@@ -1,4 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+
 
 export class Login extends Component {
     constructor(props) {
@@ -27,6 +30,12 @@ export class Login extends Component {
                 timeout: null
             });
         }, 3500);
+    }
+
+    returnHome() {
+        setTimeout(() => {
+            this.props.history.replace('/');
+        }, 1500);
     }
 
     handleChange(event) {
@@ -70,12 +79,18 @@ export class Login extends Component {
                         console.log(data);
                         console.log("state", data);
                         this.resetMessages();
+                        this.returnHome();
+                        // .then(this.props.history.replace('/'));
+                        // console.log(this.props);
+                        // this.props.history.replace('/login');
+                        // this.props.history.push('/login');
                         return;
                     }
                 }
                 this.setState({output: "Inloggning misslyckades!"});
                 this.setState({animate: "animateWarning"});
                 this.resetMessages();
+                console.log(this.props);
                 return;
             }).catch(error => {
                 console.log('There has been a problem with your fetch operation: ', error.message);
@@ -98,4 +113,9 @@ export class Login extends Component {
         );
     }
 }
+
+Login.propTypes = {
+    history: PropTypes.any
+};
+
 export default Login;
