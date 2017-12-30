@@ -1,15 +1,15 @@
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({ adapter: new Adapter() });
-
-const localStorageMock = {
-    getItem: jest.fn(),
-    setItem: jest.fn(),
-    clear: jest.fn()
-};
-
-global.localStorage = localStorageMock;
+// import { configure } from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
+//
+// configure({ adapter: new Adapter() });
+//
+// const localStorageMock = {
+//     getItem: jest.fn(),
+//     setItem: jest.fn(),
+//     clear: jest.fn()
+// };
+//
+// global.localStorage = localStorageMock;
 
 // create a test user and log in to be able to access pages
 // log in with mocked user

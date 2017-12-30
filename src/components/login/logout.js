@@ -5,8 +5,9 @@ import Auth from '../../auth';
 class Logout extends Component {
     componentDidMount() {
         Auth.deleteToken();
-        // console.log(this.props.history.push('/'));
-        console.log(this.props.history.push('/login'));
+        if (this.props.history) {
+            this.props.history.push('/login');
+        }
     }
 
     render() {
