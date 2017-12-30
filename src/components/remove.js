@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+// import { requireAuth } from '../auth';
+import PropTypes from 'prop-types';
 
 export class Remove extends Component {
     constructor(props) {
@@ -106,4 +108,9 @@ export class Remove extends Component {
         );
     }
 }
+
+Remove.propTypes = {
+    history: PropTypes.object.isRequired
+};
+
 export default Remove;

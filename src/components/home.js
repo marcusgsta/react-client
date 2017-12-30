@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import io from "socket.io-client";
 import PropTypes from 'prop-types';
-import { requireAuth } from '../auth';
 import Read from './read';
 
 function updateScroll() {
@@ -30,23 +29,10 @@ export class Home extends Component {
             message: '',
             messages: [],
             feedback: '',
-            shouldHandleKeyPress: true,
-            authorized: 'no'
+            shouldHandleKeyPress: true
         };
         this.sendMessage = this.sendMessage.bind(this);
         this.sendFeedback = this.sendFeedback.bind(this);
-    }
-
-    componentWillMount() {
-        console.log(requireAuth());
-        console.log("hej");
-        console.log(this.props.history);
-        if (!requireAuth()) {
-            this.props.history.replace('/login');
-        }
-        // this.setState({'authorized': 'yes'});
-        // this.props.history.replace('/');
-        // this.props.history.push('/');
     }
 
     componentDidMount() {

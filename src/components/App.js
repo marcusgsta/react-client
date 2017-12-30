@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
-// import {Router, Route} from 'react-router-dom';
 import {
     HashRouter as Router,
     Route,
-    Link
+    Link,
+    Switch
 } from 'react-router-dom';
 
-// import {requireAuth} from '../auth';
-// import Home from './home.js';
+import Auth from '../auth';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
+
 import About from './about.js';
 import { Home } from './home';
-// import Read from './read.js';
-// import Add from './add.js';
-// import Remove from './remove.js';
-// import Update from './update.js';
+import Read from './read.js';
+import Add from './add.js';
+import Remove from './remove.js';
+import Update from './update.js';
 import Login from './login/login.js';
 import Logout from './login/logout.js';
-// import Secret from './secret.js';
-// import EnsureLoggedInContainer from './login/ensureloggedin.js';
-// import PageNotFound from './Pagenotfound.js';
-
-// components
-// import Header from './components/Header.js';
-// import Site from './Site.js';
+import PageNotFound from './PageNotFound.js';
 
 export class App extends Component {
     render() {
@@ -47,10 +43,17 @@ export class App extends Component {
                         </div>
                     </div>
                     <div className="main">
-                        <Route exact path="/" component={Home} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/logout" component={Logout} />
-                        <Route path="/om" component={About} />
+                        <Switch>
+                            <PrivateRoute authed={Auth.authenticate()} exact path="/" component={Home} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/logout" component={Logout} />
+                            <Route path="/om" component={About} />
+                            <Route path="/read" component={Read} />
+                            <Route path="/add" component={Add} />
+                            <AdminRoute authed={Auth.authenticateAdmin()} path="/remove" component={Remove} />
+                            <AdminRoute authed={Auth.authenticateAdmin()} path="/update" component={Update} />
+                            <Route component={PageNotFound} />
+                        </Switch>
                     </div>
                 </div>
             </Router>

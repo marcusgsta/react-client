@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-
+import Auth from '../../auth';
+import { Redirect } from 'react-router-dom';
 
 export class Login extends Component {
     constructor(props) {
@@ -12,9 +12,10 @@ export class Login extends Component {
             value: '',
             output: '',
             animate: '',
-            timeout: null
+            timeout: null,
+            redirectToReferrer: false
         };
-
+        this.login = this.login.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -32,11 +33,14 @@ export class Login extends Component {
         }, 3500);
     }
 
-    returnHome() {
-        setTimeout(() => {
-            this.props.history.replace('/');
-        }, 1500);
-    }
+    // returnHome() {
+    //     setTimeout(() => {
+    //         console.log(this.props.history);
+    //         console.log(this.props.location.state);
+    //         // this.props.history.push();
+    //         // this.props.history.replace('/');
+    //     }, 1500);
+    // }
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
@@ -76,14 +80,9 @@ export class Login extends Component {
                         localStorage.setItem('token', data.token);
                         this.setState({output: "Användare loggades in!"});
                         this.setState({animate: "animate"});
-                        console.log(data);
-                        console.log("state", data);
                         this.resetMessages();
-                        this.returnHome();
-                        // .then(this.props.history.replace('/'));
-                        // console.log(this.props);
-                        // this.props.history.replace('/login');
-                        // this.props.history.push('/login');
+                        setTimeout(() => {this.login();}, 1500);
+                        // this.returnHome();
                         return;
                     }
                 }
@@ -97,7 +96,23 @@ export class Login extends Component {
             });
     }
 
+    login() {
+        Auth.authenticate(() => {
+            this.setState({ redirectToReferrer: true });
+        });
+    }
+
     render() {
+        console.log(this.props.location.state);
+        const { from } = this.props.location.state || { from: { pathname: '/' } };
+        const { redirectToReferrer } = this.state;
+
+        if (redirectToReferrer) {
+            return (
+                <Redirect to={from} />
+            );
+        }
+
         return (
             <div>
                 <h2>Logga in</h2>
@@ -115,7 +130,8 @@ export class Login extends Component {
 }
 
 Login.propTypes = {
-    history: PropTypes.any
+    history: PropTypes.any,
+    location: PropTypes.any
 };
 
 export default Login;

@@ -1,40 +1,71 @@
-// import React, {Component, PropTypes} from 'react';
-// import decode from 'jwt-decode';
-const ID_TOKEN_KEY = 'token';
-// const NEXT_PATH_KEY = 'next_path';
-// const LOGIN_ROUTE = '/login';
-// let localStorage;
+import decode from 'jwt-decode';
 
-export function requireAuth() {
-    console.log(!isLoggedIn());
-    if (!isLoggedIn()) {
-        // setNextPath(nextState.location.pathname);
-        // replace({pathname: LOGIN_ROUTE});
-        // this.props.history.replace(LOGIN_ROUTE);
-        return false;
-    }
-    return true;
-}
+const Auth = {
 
-function isLoggedIn() {
-    const idToken = getIdToken();
+    ID_TOKEN_KEY: 'token',
 
-    // return idToken && !isTokenExpired(idToken);
-    return idToken;
-}
+    authenticate(cb) {
+        if (!this.isLoggedIn()) {
+            setTimeout(cb, 100);
+            return false;
+        }
+        setTimeout(cb, 100);
+        return true;
+    },
 
-function getIdToken() {
-    if (localStorage !== undefined) {
-        return localStorage.getItem(ID_TOKEN_KEY);
-    }
-}
+    authenticateAdmin() {
+        if (this.isLoggedIn()) {
+            let token = this.getIdToken();
+            let decoded = decode(token);
 
-export function deleteToken() {
-    if (localStorage !== undefined) {
-        return localStorage.clear();
-    }
-}
+            if (decoded.role === 'admin') {
+                console.log("ho");
+                return true;
+            }
+        } else {
+            return false;
+        }
+    },
 
+    isLoggedIn() {
+        const idToken = this.getIdToken();
+
+        return idToken;
+    },
+
+    getIdToken() {
+        if (localStorage !== undefined) {
+            return localStorage.getItem(this.ID_TOKEN_KEY);
+        }
+    },
+
+    deleteToken() {
+        if (localStorage !== undefined) {
+            return localStorage.clear();
+        }
+    },
+    //
+    // getUser() {
+    //     // const token = this.getIdToken();
+    //
+    //     // fetch('/api/find/?id=' + token)
+    //     fetch('/api/find')
+    //         .then(results => {
+    //             if (results.ok) {
+    //                 return results.json();
+    //             }
+    //             throw new Error("Network response was not ok.");
+    //         }).then(data => {
+    //             console.log(data);
+    //             // this.setState({users: data});
+    //             console.log("Logged in user", data);
+    //             return data;
+    //         }).catch(error => {
+    //             console.log("There was a problem with your fetch operation: ", error.message);
+    //         });
+    // }
+
+};
 // function setNextPath(nextPath) {
 //     localStorage.setItem(NEXT_PATH_KEY, nextPath);
 // }
@@ -56,3 +87,4 @@ export function deleteToken() {
 //
 //     return date;
 // }
+export default Auth;
