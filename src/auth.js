@@ -32,15 +32,17 @@ const Auth = {
     },
 
     getIdToken() {
-        if (localStorage !== undefined) {
+        if (typeof(localStorage) !== "undefined") {
             return localStorage.getItem(this.ID_TOKEN_KEY);
         }
+        return false;
     },
 
     deleteToken() {
-        if (localStorage !== undefined) {
+        if (typeof(localStorage) !== "undefined") {
             return localStorage.clear();
         }
+        return;
     },
     //
     // getUser() {

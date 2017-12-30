@@ -14,3 +14,8 @@ build:
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
+filter:
+    paths: ["dir1/*", "dir2/*"]
+    excluded_paths:
+        - "coverage/"            # Everything in a root level "coverage" directory
+        - "src/registerServiceWorker.js"
