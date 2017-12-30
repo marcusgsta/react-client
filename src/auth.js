@@ -19,12 +19,10 @@ const Auth = {
             let decoded = decode(token);
 
             if (decoded.role === 'admin') {
-                console.log("ho");
                 return true;
             }
-        } else {
-            return false;
         }
+        return false;
     },
 
     isLoggedIn() {
