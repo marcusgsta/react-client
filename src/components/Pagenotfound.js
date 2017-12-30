@@ -1,12 +1,11 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
-const PageNotFound = () => (
+const Pagenotfound = () => (
     <div>
         <h2>Sidan hittades inte!</h2>
         <p>Vi kunde inte hitta sidan</p>
-        {/* <Link to="/">Hem</Link> */}
     </div>
 );
 
-export default PageNotFound;
+export default Pagenotfound;

@@ -18,7 +18,7 @@ import Remove from './remove.js';
 import Update from './update.js';
 import Login from './login/login.js';
 import Logout from './login/logout.js';
-import PageNotFound from './PageNotFound.js';
+import Pagenotfound from './Pagenotfound';
 
 export class App extends Component {
     render() {
@@ -52,7 +52,7 @@ export class App extends Component {
                             <Route path="/add" component={Add} />
                             <AdminRoute authed={Auth.authenticateAdmin()} path="/remove" component={Remove} />
                             <AdminRoute authed={Auth.authenticateAdmin()} path="/update" component={Update} />
-                            <Route component={PageNotFound} />
+                            <Route component={Pagenotfound} />
                         </Switch>
                     </div>
                 </div>
