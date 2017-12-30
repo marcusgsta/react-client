@@ -103,7 +103,6 @@ export class Login extends Component {
     }
 
     render() {
-        console.log(this.props.location.state);
         const { from } = this.props.location.state || { from: { pathname: '/' } };
         const { redirectToReferrer } = this.state;
 
