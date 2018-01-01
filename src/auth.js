@@ -1,4 +1,5 @@
 import decode from 'jwt-decode';
+const crypto = require('crypto');
 
 const Auth = {
 
@@ -11,6 +12,47 @@ const Auth = {
         }
         setTimeout(cb, 100);
         return true;
+    },
+
+    /*
+    * get nick from token
+    * @return nick
+    */
+    getNick() {
+        if (this.isLoggedIn()) {
+            let token = this.getIdToken();
+            let decoded = decode(token);
+
+            if (decoded.nick !== "undefined") {
+                return decoded.nick;
+            }
+        }
+        return false;
+    },
+
+    getUser() {
+        if (this.isLoggedIn()) {
+            let token = this.getIdToken();
+            let decodedUser = decode(token);
+
+            if (decodedUser !== "undefined") {
+                return decodedUser;
+            }
+        }
+        return false;
+    },
+
+    getGravatar() {
+        let user = this.getUser();
+
+        console.log(user);
+        if (user.email) {
+            var emailStr = user.email;
+            var hashStr = crypto.createHash('md5').update(emailStr).digest('hex');
+
+            return "https://www.gravatar.com/avatar/" + hashStr;
+        }
+        return "false";
     },
 
     authenticateAdmin() {

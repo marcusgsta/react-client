@@ -33,15 +33,6 @@ export class Login extends Component {
         }, 3500);
     }
 
-    // returnHome() {
-    //     setTimeout(() => {
-    //         console.log(this.props.history);
-    //         console.log(this.props.location.state);
-    //         // this.props.history.push();
-    //         // this.props.history.replace('/');
-    //     }, 1500);
-    // }
-
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
     }
@@ -76,13 +67,11 @@ export class Login extends Component {
                 if (data.length !== 0) {
                     if (data.token) {
                         console.log(data.token);
-                        // this.setState({"token": data.token});
                         localStorage.setItem('token', data.token);
                         this.setState({output: "Användare loggades in!"});
                         this.setState({animate: "animate"});
                         this.resetMessages();
                         setTimeout(() => {this.login();}, 1500);
-                        // this.returnHome();
                         return;
                     }
                 }

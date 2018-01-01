@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import Auth from 'auth';
 
 export class Read extends Component {
     constructor(props) {
@@ -29,12 +30,14 @@ export class Read extends Component {
     render() {
         return (
             <div className="users">
-                <h2>Användare</h2>
                 {
-                    this.state.users.map((data, i) => {
+                    this.state.users.map((user, i) => {
                         return <div className="user" key={i}>
-                            {/* <span className="gravatar"> {data.gravatar}</span> */}
-                            <div className="nick">{data.nick}</div></div>;
+                            <a href="#" className="has-tooltip">
+                                <img src={user.gravatar + '?d=robohash'} alt={user.nick} />
+                                <span className="tooltip tooltip-with-border" role="tooltip"><span className="user-tip">{user.name}</span><br/>{user.nick}<br/>{user.email}</span>
+                            </a>
+                        </div>;
                     })
                 }
             </div>

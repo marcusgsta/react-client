@@ -235,15 +235,121 @@ html {
         .primary-nav li a:hover {
           border-color: #99ddff; } }
 
+/*
+    Demo for this article:
+    http://blustemy.io/tooltips-with-sass-mixins/
+*/
+body {
+  font-family: "Arial", sans-serif;
+  padding: 4em 0 0 1em; }
+
+a {
+  color: #1098ad;
+  text-decoration: none; }
+
+button {
+  font-size: 1em;
+  padding: .5em 1.5em;
+  background: #1098ad;
+  border: 0.075em solid rgba(0, 0, 0, 0.1);
+  border-radius: .1em;
+  color: white; }
+  button:hover, button:focus {
+    border-color: rgba(0, 0, 0, 0.5); }
+
+.has-tooltip {
+  position: relative;
+  overflow: visible; }
+  .has-tooltip:hover .tooltip, .has-tooltip:focus .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+    transition: visibility 0s linear 0s, opacity 0.3s ease-out 0s, transform 0.3s ease-out 0s; }
+
+.tooltip {
+  min-width: 10em;
+  padding: .5em .75em;
+  box-shadow: 0 0.05em 0.15em rgba(0, 0, 0, 0.1); }
+
+.tooltip-with-border {
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 0.75em;
+  background-color: white;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 0.75em);
+  transition: visibility 0s linear 0.2s, opacity 0.2s ease-in 0s, transform 0.2s ease-in 0s;
+  pointer-events: none;
+  border: 0.05em solid #999;
+  color: #333; }
+  .tooltip-with-border::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 0.7em solid white;
+    border-left: 0.7em solid transparent;
+    border-right: 0.7em solid transparent;
+    margin-left: -0.7em; }
+  .tooltip-with-border::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 0.75em solid #999;
+    border-left: 0.75em solid transparent;
+    border-right: 0.75em solid transparent;
+    margin-left: -0.75em; }
+
+.tooltip-without-border {
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 0.5em;
+  background-color: black;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 0.5em);
+  transition: visibility 0s linear 0.2s, opacity 0.2s ease-in 0s, transform 0.2s ease-in 0s;
+  pointer-events: none;
+  border: 0 solid transparent;
+  color: #fff; }
+  .tooltip-without-border::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 0.5em solid black;
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    margin-left: -0.5em; }
+  .tooltip-without-border::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 0.5em solid transparent;
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    margin-left: -0.5em; }
+
 .site-header {
   height: 100px; }
 
-#icon {
-  float: left; }
-
-@media screen and (max-width: 760px) {
-  #icon {
-    display: none; } }
 .primary-nav {
   margin-top: 26px;
   padding-left: 20px; }
@@ -371,11 +477,11 @@ body {
   font: 110% Helvetica, sans-serif;
   color: #333;
   background-color: #007ebd;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   height: 800px;
   clear: both;
-  padding-top: 24px; }
+  padding: 0; }
 
 hr {
   border-color: #99ddff; }
@@ -386,6 +492,28 @@ hr {
 @media screen and (min-width: 1000px) {
   .main {
     width: 70%; } }
+/* user */
+.user {
+  float: left; }
+  .user img {
+    width: 80px;
+    padding: 4px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px; }
+
+.user-tip {
+  font-weight: 700;
+  font-size: 110%; }
+
+.tooltip {
+  z-index: 10;
+  margin-bottom: 50px; }
+
+.author {
+  color: gray; }
+
 #portrait {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

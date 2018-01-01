@@ -12,7 +12,7 @@ export class Update extends Component {
             id: '',
             name: '',
             nick: '',
-            gravatar: '',
+            email: '',
             timeout: ''
         };
 
@@ -45,13 +45,13 @@ export class Update extends Component {
 
             let name = users[0].name;
             let nickN = users[0].nick;
-            let gravatar = users[0].gravatar;
+            let email = users[0].email;
 
             console.log(users[0]);
             this.setState({id: event.target.value});
             this.setState({name: name});
             this.setState({nick: nickN});
-            this.setState({gravatar: gravatar});
+            this.setState({email: email});
 
             console.log("kolla", this.state.users);
         }
@@ -66,7 +66,7 @@ export class Update extends Component {
             this.resetMessages();
             return;
         }
-        if (this.state.name === '' || this.state.nick === '' || this.state.gravatar === '') {
+        if (this.state.name === '' || this.state.nick === '' || this.state.email === '') {
             console.log("One or more empty strings");
             this.setState({output: "Vänligen skriv in värden i alla fält!"});
             this.setState({animate: "animateWarning"});
@@ -77,13 +77,13 @@ export class Update extends Component {
         console.log("id", this.state.id);
         console.log("name", this.state.name);
         console.log("nick", this.state.nick);
-        console.log("gravatar", this.state.gravatar);
+        console.log("email", this.state.email);
 
         const myInit = {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             cache: 'default',
-            body: JSON.stringify({"id": this.state.id, "name": this.state.name, "nick": this.state.nick, "gravatar": this.state.gravatar})
+            body: JSON.stringify({"id": this.state.id, "name": this.state.name, "nick": this.state.nick, "email": this.state.email})
         };
 
         fetch('/api/update', myInit)
@@ -101,7 +101,7 @@ export class Update extends Component {
                     if (obj._id === this.state.id) {
                         obj.name = this.state.name;
                         obj.nick = this.state.nick;
-                        obj.gravatar = this.state.gravatar;
+                        obj.email = this.state.email;
                     }
                     return obj;
                 });
@@ -145,7 +145,7 @@ export class Update extends Component {
                     <br />
                     <input name="name" onChange={this.handleAlternate} value={this.state.name} type="text" /><br />
                     <input name="nick" onChange={this.handleAlternate} value={this.state.nick} type="text" /><br />
-                    <input name="gravatar" onChange={this.handleAlternate} value={this.state.gravatar} type="text" /><br />
+                    <input name="email" onChange={this.handleAlternate} value={this.state.email} type="text" /><br />
                     <input type="submit" className="button button--text button--primary" value="Uppdatera" />
                 </form>
                 <div className={"output " + this.state.animate}>{this.state.output}</div>

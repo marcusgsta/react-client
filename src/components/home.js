@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import io from "socket.io-client";
 import PropTypes from 'prop-types';
 import Read from './read';
+import Auth from '../auth';
 
 function updateScroll() {
     var element = document.querySelector(".messages");
@@ -12,7 +13,7 @@ function updateScroll() {
 
 const Message = ({message}) => (
     <div className="chatMessage">
-        <div>{message.author}: {message.message}</div>
+        <div><span className="author">{message.author}</span> {message.message}</div>
     </div>
 );
 
@@ -33,6 +34,15 @@ export class Home extends Component {
         };
         this.sendMessage = this.sendMessage.bind(this);
         this.sendFeedback = this.sendFeedback.bind(this);
+    }
+
+    componentWillMount() {
+        let nick = '';
+
+        if (Auth.getNick()) {
+            nick = Auth.getNick();
+            this.setState({username: nick});
+        }
     }
 
     componentDidMount() {
@@ -73,8 +83,7 @@ export class Home extends Component {
     render() {
         return (
             <div className="chat">
-                <h1>Chat</h1>
-                <p>Välkommen!</p>
+                {/* <h1>Chat</h1> */}
                 <div className="container chatwindow">
                     <div className="messages">
                         {this.state.messages.map((m, i) => console.log(m) || <Message key={i} message={m} />)}
@@ -83,8 +92,8 @@ export class Home extends Component {
                         </div>
                     </div>
                     <div className="chat-input">
-                        <input type="text" placeholder="Nick" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
-                        <br/>
+                        {/* <input type="text" placeholder="Nick" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/> */}
+                        {/* <br/> */}
                         <input type="text" placeholder="Meddelande" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})} onKeyPress={this.sendFeedback} className="form-control"/>
                         <br/>
                         <button onClick={this.sendMessage} className="button button--text button--primary">Skicka</button>

@@ -4,6 +4,7 @@
 @import 'patternlab/scss/04-components/_button.scss';
 @import 'patternlab/scss/04-components/navigation/_primary-nav.scss';
 @import 'dropdownmenu.scss';
+@import 'tooltip.scss';
 
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
@@ -24,18 +25,20 @@ $hover-color: $color-blue-grey-2;
 
 .site-header {
     //overflow: auto;
+    // background-color: gray;
     height:100px;
-    }
-
-#icon {
-    float:left;
 }
 
-@media screen and (max-width: 760px) {
-    #icon {
-        display: none;
-    }
-}
+
+// #icon {
+//     float:left;
+// }
+
+// @media screen and (max-width: 760px) {
+//     #icon {
+//         display: none;
+//     }
+// }
 
 .primary-nav {
     margin-top: 26px;
@@ -111,11 +114,12 @@ body {
   font: 110% $font-stack;
   color: $primary-color;
   background-color: $color-cerulean;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   height:800px;
   clear:both;
-  padding-top:24px;
+  // padding-top:24px;
+  padding:0;
 }
 
 hr {
@@ -136,6 +140,32 @@ hr {
     }
 }
 
+/* user */
+
+
+.user {
+    float:left;
+    // text-align: center;
+    img {
+        width: 80px;
+        padding: 4px;
+        @include border-radius(10px);
+    }
+}
+
+.user-tip {
+    font-weight: 700;
+    font-size: 110%;
+}
+
+.tooltip {
+    z-index: 10;
+    margin-bottom: 50px;
+}
+
+.author {
+    color: gray;
+}
 
 
 #portrait { @include border-radius(5px); }

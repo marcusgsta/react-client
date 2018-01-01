@@ -6,7 +6,7 @@ export class Add extends Component {
         this.state = {
             name: '',
             nick: '',
-            gravatar: '',
+            email: '',
             password: '',
             value: '',
             description: '',
@@ -38,7 +38,7 @@ export class Add extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.name === '' || this.state.nick === '' || this.state.gravatar === '' || this.state.password === '') {
+        if (this.state.name === '' || this.state.nick === '' || this.state.email === '' || this.state.password === '') {
             console.log("found empty string");
             this.setState({output: "Vänligen skriv in värden i alla fält!"});
             this.setState({animate: "animateWarning"});
@@ -48,14 +48,14 @@ export class Add extends Component {
         console.log(typeof(this.state.name));
         console.log('A name was submitted: ' + this.state.name);
         console.log('A nickname was submitted: ' + this.state.nick);
-        console.log('A gravatar was submitted: ' + this.state.gravatar);
+        console.log('An email was submitted: ' + this.state.email);
 
 
         const myInit = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             cache: 'default',
-            body: JSON.stringify({"name": this.state.name, "nick": this.state.nick, "gravatar": this.state.gravatar, "password": this.state.password})
+            body: JSON.stringify({"name": this.state.name, "nick": this.state.nick, "email": this.state.email, "password": this.state.password})
         };
 
         // fetch(this.state.url, myInit)
@@ -84,7 +84,7 @@ export class Add extends Component {
                     <div className="input">
                         <input name="name" placeholder="Namn" type="text" value={this.state.name} onChange={this.handleChange}/><br />
                         <input name="nick" placeholder="Nick" type="text" value={this.state.nick} onChange={this.handleChange}/><br />
-                        <input name="gravatar" placeholder="Gravatar" type="text" value={this.state.gravatar} onChange={this.handleChange}/><br />
+                        <input name="email" placeholder="Email" type="text" value={this.state.email} onChange={this.handleChange}/><br />
                         <input name="password" placeholder="Lösenord" type="password" value={this.state.password} onChange={this.handleChange}/><br />
                         <input className="button button--text button--primary" type="submit" value="Lägg till"/>
                     </div>

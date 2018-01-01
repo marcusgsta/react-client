@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import Header from './Header';
 
+import Admin from './admin';
 import About from './about.js';
 import { Home } from './home';
 import Read from './read.js';
@@ -36,6 +37,7 @@ export class App extends Component {
                             <Route path="/add" component={Add} />
                             <AdminRoute authed={Auth.authenticateAdmin()} path="/remove" component={Remove} />
                             <AdminRoute authed={Auth.authenticateAdmin()} path="/update" component={Update} />
+                            <AdminRoute authed={Auth.authenticateAdmin()} path="/admin" component={Admin} />
                             <Route component={Pagenotfound} />
                         </Switch>
                     </div>
