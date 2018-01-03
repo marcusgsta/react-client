@@ -45,7 +45,6 @@ const Auth = {
     getGravatar() {
         let user = this.getUser();
 
-        console.log(user);
         if (user.email) {
             var emailStr = user.email;
             var hashStr = crypto.createHash('md5').update(emailStr).digest('hex');

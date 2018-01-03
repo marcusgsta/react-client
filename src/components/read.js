@@ -33,10 +33,10 @@ export class Read extends Component {
                 {
                     this.state.users.map((user, i) => {
                         return <div className="user" key={i}>
-                            <a href="#" className="has-tooltip">
+                            <div /*href="#"*/ className="has-tooltip">
                                 <img src={user.gravatar + '?d=robohash'} alt={user.nick} />
                                 <span className="tooltip tooltip-with-border" role="tooltip"><span className="user-tip">{user.name}</span><br/>{user.nick}<br/>{user.email}</span>
-                            </a>
+                            </div>
                         </div>;
                     })
                 }
