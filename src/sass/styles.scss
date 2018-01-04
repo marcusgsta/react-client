@@ -5,6 +5,9 @@
 @import 'patternlab/scss/04-components/navigation/_primary-nav.scss';
 @import 'dropdownmenu.scss';
 @import 'tooltip.scss';
+@import 'font-awesome/scss/fontawesome.scss';
+@import "font-awesome/scss/fa-solid.scss";
+@import 'footer-distributed.scss';
 
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
@@ -20,13 +23,24 @@ $hover-color: $color-blue-grey-2;
     border-radius: $radius;
 }
 
+
+html {
+    height: 100%;
+}
 // Header
 // Nav
 
 .site-header {
     //overflow: auto;
     // background-color: gray;
-    height:100px;
+    .header-title {
+        width: 100%;
+        padding: 12px;
+        text-align: left;
+        color: #fff;
+        font-weight: 600;
+        background-image: linear-gradient(to right top, #160537, #3b335e, #656285, #9394ad, #c7c9d5);
+    }
 }
 
 
@@ -41,15 +55,11 @@ $hover-color: $color-blue-grey-2;
 // }
 
 .primary-nav {
-    margin-top: 26px;
+    margin-top: 4px;
     padding-left: 20px;
 }
 
-@media screen and (max-width: 760px) {
-    .primary-nav {
-        margin-top: 0;
-    }
-}
+
 
 .primary-nav li a {
     color: #000;
@@ -63,11 +73,6 @@ $hover-color: $color-blue-grey-2;
 @include navmenu(1, 100%);
 
 
-@media screen and (max-width: 760px) {
-    .centeredmenu ul li {
-       clear:both;
-   }
-}
 // navbar {
 //     position:relative;
 // }
@@ -101,26 +106,55 @@ $hover-color: $color-blue-grey-2;
 //   }
 // }
 
-@media screen and (max-width: 760px) {
-    #icon {
-        display: none;
-    }
-}
+// @media screen and (max-width: 760px) {
+//     #icon {
+//         display: none;
+//     }
+// }
 
 
 // Body
 
 body {
-  font: 110% $font-stack;
-  color: $primary-color;
-  background-color: $color-cerulean;
-  width: 100%;
-  margin: 0 auto;
-  height:800px;
-  clear:both;
-  // padding-top:24px;
-  padding:0;
+    // min-height: 100%;
+    // display: grid;
+    // grid-template-rows: 1fr auto;
+    // display: flex;
+    // // min-height: 1000px;
+    // height: 100%;
+    // flex-direction: column;
+    font: 110% $font-stack;
+    color: $primary-color;
+    background-color: $color-cerulean;
+    width: 100%;
+    margin: 0 auto;
+    // height:800px;
+    clear:both;
+    // padding-top:24px;
+    padding:0;
+    height:100%;
 }
+
+.container {
+
+    // display: flex;
+    // // min-height: 1000px;
+    // height: 100%;
+    // flex-direction: column;
+
+}
+
+.main {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    overflow: auto;
+    margin: 0 auto;
+    min-width: 310px;
+}
+
 
 hr {
     border-color: $color-baby-blue;
@@ -128,20 +162,13 @@ hr {
 
 // .main
 
-@media screen and (min-width: 700px) {
-    .main {
-        width: 90%;
-    }
-}
 
-@media screen and (min-width: 1000px) {
-    .main {
-        width: 70%;
-    }
-}
 
 /* user */
 
+.users {
+    width: 90%;
+}
 
 .user {
     float:left;
@@ -167,6 +194,16 @@ hr {
     color: gray;
 }
 
+.admin {
+    li {
+        list-style-type: none;
+    }
+
+    a {
+        color: #000;
+    }
+}
+
 
 #portrait { @include border-radius(5px); }
 
@@ -189,7 +226,10 @@ hr {
     }
 }
 
-form {
+form.add-form,
+form.update-form,
+form.remove-form,
+form.login-form {
     // margin: 0 auto;
     // width:70%;
     // display:block;
@@ -285,34 +325,55 @@ img#express {
   color: #697130;
   font-style: italic; }
 
-.main {
-    margin: 0 auto;
-}
 
-.chat h1,
-.chat p {
-    text-align: center;
+
+.chat,
+.login-page,
+.about-page,
+.add-page,
+.remove-page,
+.admin,
+.update-page,
+.pagenotfound {
+    width: 100%;
+    margin: 0 auto;
+    flex: 1;
+    p {
+        text-align: center;
+    }
 }
 
 .chat-input {
-  margin: 0 auto;
-  margin-top: 16px;
-  width: 500px;
-}
-
-input.form-control {
-  font-size: 16px;
-  padding: 4px;
-  margin: 0 0 8px;
-  width: 100%;
-  text-align: center;
-  border-radius: $border-radius-base;
+    width:350px;
+    margin: 0 auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display:block;
+    // width: 500px;
+    .form-control {
+        // margin: 0 0 8px;
+        width:300px;
+        display: inline-block;
+        // float:left;
+        font-size:32px;
+        text-align: center;
+        border-radius: $border-radius-base;
+    }
+    .sendButton {
+        width:50px;
+        display:inline-block;
+        padding: 4px;
+        background-color: transparent;
+        color: #fff;
+    }
 }
 
 .send-button {
   font-size: 24px;
   padding: 4px;
   width: 100%;}
+
+
 
 .button {
     width:100%;
@@ -321,13 +382,13 @@ input.form-control {
 
 // footer
 
-.site-footer {
-    background-color: $color-baby-blue;
-    border-radius: $border-radius-base;
-    height: 100px;
-    padding:8px;
-    margin: 20px 0;
-    text-align: center;
+.footer {
+    // background-color: $color-baby-blue;
+    // border-radius: $border-radius-base;
+    // padding:8px;
+    // margin: 0;
+    // text-align: center;
+    // clear:both;
 }
 
 // general
@@ -363,11 +424,76 @@ input.form-control {
   border-color: yellow;
 }
 
-@media screen and (max-width: 1000px) {
-    .chat {
-        width: 100%;
+
+// @media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
+    .primary-nav {
+        // display: -ms-flexbox;
+        display: inline-block;
+        /* display: flex; */
     }
+    .chat {
+        width: 70%;
+    }
+}
+
+// @media screen and (max-width: 787px) {
+@media screen and (max-width: 767px) {
+   .centeredmenu ul li {
+       clear:both;
+       width:100%;
+   }
+   .primary-nav {
+       margin-top: 0;
+   }
+
+   .chat {
+       width: 100%;
+   }
+   // .centeredmenu {
+   //     margin-right: %;
+   // }
+}
+
+@media screen and (max-width: 800px) {
+   .centeredmenu {
+       margin-right: 1%;
+   }
+}
+
+@media screen and (min-width: 788px) {
+    // .main {
+    //     width: 90%;
+    // }
+}
+
+@media screen and (min-width: 788px) {
+    .centeredmenu {
+        float: right;
+        width: auto;
+        // margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    .centeredmenu {
+        margin-right:5%;
+    }
+
     .chat-input {
-        width: 100%;
+        // width: 100%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    // .main {
+    //     width: 70%;
+    // }
+}
+
+
+@media screen and (min-width: 1000px) {
+    .centeredmenu {
+        margin-right:15%;
     }
 }

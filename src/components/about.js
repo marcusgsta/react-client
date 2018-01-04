@@ -2,7 +2,7 @@ import React from 'react';
 import expressNode from '../img/express.jpg';
 
 const About = () => (
-    <div>
+    <div className="about-page">
         <h2>Om</h2>
         <p>Den här sidan har gjorts med hjälp av Express.js,
              vilket skapar en server för back-end tillsammans

@@ -3,6 +3,8 @@ import io from "socket.io-client";
 import PropTypes from 'prop-types';
 import Read from './read';
 import Auth from '../auth';
+const FontAwesome = require('react-fontawesome');
+
 
 function updateScroll() {
     var element = document.querySelector(".messages");
@@ -32,7 +34,8 @@ export class Home extends Component {
             feedback: '',
             shouldHandleKeyPress: true
         };
-        this.sendMessage = this.sendMessage.bind(this);
+        // this.sendMessage = this.sendMessage.bind(this);
+        this.onCommentSubmit = this.onCommentSubmit.bind(this);
         this.sendFeedback = this.sendFeedback.bind(this);
     }
 
@@ -65,7 +68,8 @@ export class Home extends Component {
         });
     }
 
-    sendMessage(ev) {
+    // sendMessage(ev) {
+    onCommentSubmit(ev) {
         ev.preventDefault();
         this.socket.emit('SEND_MESSAGE', {
             author: this.state.username,
@@ -84,20 +88,24 @@ export class Home extends Component {
         return (
             <div className="chat">
                 {/* <h1>Chat</h1> */}
-                <div className="container chatwindow">
+                <div className="chatwindow">
                     <div className="messages">
                         {this.state.messages.map((m, i) => console.log(m) || <Message key={i} message={m} />)}
                         <div className="feedback">
                             {this.state.feedback}
                         </div>
                     </div>
-                    <div className="chat-input">
-                        {/* <input type="text" placeholder="Nick" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/> */}
-                        {/* <br/> */}
-                        <input type="text" placeholder="Meddelande" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})} onKeyPress={this.sendFeedback} className="form-control"/>
-                        <br/>
-                        <button onClick={this.sendMessage} className="button button--text button--primary">Skicka</button>
-                    </div>
+                    <form onSubmit={this.onCommentSubmit}>
+                        <div className="chat-input">
+                            <input type="text" autoFocus placeholder="..." value={this.state.message} onChange={ev => this.setState({message: ev.target.value})} onKeyPress={this.sendFeedback} className="form-control"/>
+                            <button type="submit" className="sendButton button--primary">
+                                <FontAwesome
+                                    name='arrow-circle-right'
+                                    size='2x'/>
+                            </button>
+                            {/* <button type="submit" className="button button--text button--primary">Skicka</button> */}
+                        </div>
+                    </form>
                 </div>
                 <Read/>
             </div>

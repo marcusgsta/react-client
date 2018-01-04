@@ -102,9 +102,9 @@ export class Login extends Component {
         }
 
         return (
-            <div>
+            <div className="login-page">
                 <h2>Logga in</h2>
-                <form className="db_form" onSubmit={this.handleSubmit}>
+                <form className="login-form" onSubmit={this.handleSubmit}>
                     <div className="input">
                         <input name="nick" placeholder="Nick" type="text" value={this.state.nick} onChange={this.handleChange}/><br />
                         <input name="password" placeholder="Lösenord" type="password" value={this.state.password} onChange={this.handleChange}/><br />

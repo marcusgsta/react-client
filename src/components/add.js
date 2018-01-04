@@ -78,9 +78,9 @@ export class Add extends Component {
 
     render() {
         return (
-            <div>
+            <div className="add-page">
                 <h2>Registrera ny användare</h2>
-                <form className="db_form" onSubmit={this.handleSubmit}>
+                <form className="db_form add-form" onSubmit={this.handleSubmit}>
                     <div className="input">
                         <input name="name" placeholder="Namn" type="text" value={this.state.name} onChange={this.handleChange}/><br />
                         <input name="nick" placeholder="Nick" type="text" value={this.state.nick} onChange={this.handleChange}/><br />

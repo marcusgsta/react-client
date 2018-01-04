@@ -90,9 +90,9 @@ export class Remove extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="remove-page">
                 <h2>Radera användare</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form className="remove-form" onSubmit={this.handleSubmit}>
                     <select name="id" onChange={this.handleChange}>
                         <option value="null">Välj användare</option>
                         {

@@ -9,6 +9,7 @@ import Auth from '../auth';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import Header from './Header';
+import Footer from './Footer';
 
 import Admin from './admin';
 import About from './about.js';
@@ -40,6 +41,7 @@ export class App extends Component {
                             <AdminRoute authed={Auth.authenticateAdmin()} path="/admin" component={Admin} />
                             <Route component={Pagenotfound} />
                         </Switch>
+                        <Footer />
                     </div>
                 </div>
             </Router>

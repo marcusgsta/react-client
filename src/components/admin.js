@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Admin = () => (
-    <div>
+    <div className="admin">
         <h2>Admin</h2>
-        <li><Link to="/update">Uppdatera</Link></li>
-        <li><Link to="/remove">Radera</Link></li>
+        <li><Link to="/update">ikon Uppdatera</Link></li>
+        <li><Link to="/remove">ikon Radera</Link></li>
     </div>
 );
 

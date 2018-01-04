@@ -131,9 +131,9 @@ export class Update extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="update-page">
                 <h2>Redigera användare</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form className="update-form" onSubmit={this.handleSubmit}>
                     <select name="id" onChange={this.handleChange}>
                         <option value="null">Välj användare</option>
                         {
