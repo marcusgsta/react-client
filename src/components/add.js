@@ -12,7 +12,8 @@ export class Add extends Component {
             description: '',
             output: '',
             animate: '',
-            timeout: null
+            timeout: null,
+            nickExists: 'no'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,6 +31,69 @@ export class Add extends Component {
                 timeout: null
             });
         }, 3500);
+    }
+
+    setNickExists(value) {
+        this.setState({nickExists: value});
+    }
+
+    fetchNick(nick) {
+        let that = this;
+
+        fetch('/api/find/' + nick)
+            // .then(response => response.json())
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error("Network response was not ok.");
+            }).then(data => {
+                if (data.length === 0) {
+                    // this.setNickExists('yes');
+                    // this.setState({nickExists: 'yes'});
+                    that.addUser(this.state.name, that.state.nick, this.state.email, that.state.password);
+                } else {
+                    that.addErrorMessage();
+                }
+            });
+    }
+
+    addUser(name, nick, email, password) {
+        console.log("in function: ", this.state.nickExists);
+        const myInit = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            cache: 'default',
+            body: JSON.stringify({"name": name, "nick": nick, "email": email, "password": password})
+        };
+
+        fetch('/api/add', myInit)
+            .then(results => {
+                if (results.ok) {
+                    return results.json();
+                }
+                console.log(results.json());
+                throw new Error('Network response was not ok.');
+            }).then(data => {
+                this.addSuccessMessage(data);
+            }).catch(error => {
+                console.log('There has been a problem with your fetch operation: ', error.message);
+            });
+    }
+
+    addSuccessMessage(data) {
+        this.setState({output: "Användare lades till i databas!"});
+        this.setState({animate: "animate"});
+        console.log(data);
+        // console.log("state", data);
+        this.resetMessages();
+    }
+
+    addErrorMessage() {
+        this.setState({output: "Nick existerar redan!"});
+        this.setState({animate: "animateWarning"});
+        // console.log("state", data);
+        this.resetMessages();
     }
 
     handleChange(event) {
@@ -50,30 +114,8 @@ export class Add extends Component {
         console.log('A nickname was submitted: ' + this.state.nick);
         console.log('An email was submitted: ' + this.state.email);
 
-
-        const myInit = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            cache: 'default',
-            body: JSON.stringify({"name": this.state.name, "nick": this.state.nick, "email": this.state.email, "password": this.state.password})
-        };
-
-        // fetch(this.state.url, myInit)
-        fetch('/api/add', myInit)
-            .then(results => {
-                if (results.ok) {
-                    return results.json();
-                }
-                throw new Error('Network response was not ok.');
-            }).then(data => {
-                this.setState({output: "Användare lades till i databas!"});
-                this.setState({animate: "animate"});
-                console.log(data);
-                console.log("state", data);
-                this.resetMessages();
-            }).catch(error => {
-                console.log('There has been a problem with your fetch operation: ', error.message);
-            });
+        // let fetchData = this.fetchNick(this.state.nick);
+        this.fetchNick(this.state.nick);
     }
 
     render() {

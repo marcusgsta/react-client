@@ -31,8 +31,6 @@ html {
 // Nav
 
 .site-header {
-    //overflow: auto;
-    // background-color: gray;
     .header-title {
         width: 100%;
         padding: 12px;
@@ -44,22 +42,10 @@ html {
 }
 
 
-// #icon {
-//     float:left;
-// }
-
-// @media screen and (max-width: 760px) {
-//     #icon {
-//         display: none;
-//     }
-// }
-
 .primary-nav {
     margin-top: 4px;
     padding-left: 20px;
 }
-
-
 
 .primary-nav li a {
     color: #000;
@@ -73,79 +59,20 @@ html {
 @include navmenu(1, 100%);
 
 
-// navbar {
-//     position:relative;
-// }
-
-// nav {
-//     padding: 35px 0 35px 120px;
-//     height:100%;
-//
-//   ul {
-//     margin: 0;
-//     padding: 0;
-//     list-style: none;
-//   }
-//
-//   li {
-//     display: inline-block;
-//     // background-color: #eefad7;
-//     // @include border-radius(10px);
-//     margin-right:4px;
-//   }
-//
-//   a {
-//     display: block;
-//     padding: 6px 12px;
-//     text-decoration: none;
-//     // color: #333;
-//   }
-//
-//   li:hover {
-//     //   background-color:#d1ffea;
-//   }
-// }
-
-// @media screen and (max-width: 760px) {
-//     #icon {
-//         display: none;
-//     }
-// }
-
-
 // Body
 
 body {
-    // min-height: 100%;
-    // display: grid;
-    // grid-template-rows: 1fr auto;
-    // display: flex;
-    // // min-height: 1000px;
-    // height: 100%;
-    // flex-direction: column;
     font: 110% $font-stack;
     color: $primary-color;
     background-color: $color-cerulean;
     width: 100%;
     margin: 0 auto;
-    // height:800px;
     clear:both;
-    // padding-top:24px;
     padding:0;
     height:100%;
 }
 
-.container {
-
-    // display: flex;
-    // // min-height: 1000px;
-    // height: 100%;
-    // flex-direction: column;
-
-}
-
 .main {
-    min-height: 100%;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -160,9 +87,6 @@ hr {
     border-color: $color-baby-blue;
 }
 
-// .main
-
-
 
 /* user */
 
@@ -172,7 +96,6 @@ hr {
 
 .user {
     float:left;
-    // text-align: center;
     img {
         width: 80px;
         padding: 4px;
@@ -230,15 +153,9 @@ form.add-form,
 form.update-form,
 form.remove-form,
 form.login-form {
-    // margin: 0 auto;
-    // width:70%;
-    // display:block;
-
     input {
         font-size:16px;
         padding:4px;
-        //margin: 8px 0 4px;
-        //margin: 8px 0 auto;
         margin: 0 auto;
         display:block;
         width:70%;
@@ -246,7 +163,6 @@ form.login-form {
     select {
         font-size:16px;
         padding: 8px;
-        //margin: 0 0 8px;
         height:40px;
         margin: 0 auto;
         display:block;
@@ -266,11 +182,6 @@ form.remove-form {
     }
 }
 
-.db_form {
-    // margin: 0 auto;
-    // width:70%;
-    // display:block;
-}
 
 .output {
     margin: 0 auto;
@@ -285,8 +196,6 @@ form.remove-form {
 .animate {
     opacity: 0;
     animation: KEYFRAME-NAME 4s;
-    //-webkit-transition: opacity 2s;
-    //transition: opacity 2s;
     background-color: #4CAF50;
     color: #000;
     @include border-radius(10px);
@@ -296,8 +205,6 @@ form.remove-form {
 .animateWarning {
     opacity: 0;
     animation: KEYFRAME-NAME 4s;
-    //-webkit-transition: opacity 2s;
-    //transition: opacity 2s;
     background-color: darkred;
     color: #fff;
     @include border-radius(10px);
@@ -320,14 +227,12 @@ form.remove-form {
     }
     .wrap {
         display: flex;
-        flex-direction:row;
+        flex-flow: row wrap;
         align-items: flex-start;
-        flex-wrap: wrap;
         justify-content: flex-start;
     }
 
     section {
-        // flex-grow:1;
         background-color: white;
         margin: 12px;
         height:auto;
@@ -357,12 +262,10 @@ form.remove-form {
     }
 }
 
-
-
 .messages {
   background-color: #eee;
   border:10px solid #3b335e;
-  margin: 12px 0 0 0;
+  margin: 12px 0 0;
   padding: 12px;
   height: 220px;
   overflow: scroll;
@@ -375,8 +278,6 @@ form.remove-form {
 .feedback {
   color: #697130;
   font-style: italic; }
-
-
 
 .chat,
 .login-page,
@@ -398,7 +299,6 @@ form.remove-form {
     padding: 20px;
     .adminLink {
         float:left;
-        // width: 200px;
         margin: 12px;
         padding: 8px;
         background-color: white;
@@ -416,12 +316,9 @@ form.remove-form {
     margin-top: 16px;
     margin-bottom: 16px;
     display:block;
-    // width: 500px;
     .form-control {
-        // margin: 0 0 8px;
         width:300px;
         display: inline-block;
-        // float:left;
         font-size:32px;
         text-align: center;
         border-radius: $border-radius-base;
@@ -440,22 +337,9 @@ form.remove-form {
   padding: 4px;
   width: 100%;}
 
-
-
 .button {
     width:100%;
     margin: 16px 0;
-}
-
-// footer
-
-.footer {
-    // background-color: $color-baby-blue;
-    // border-radius: $border-radius-base;
-    // padding:8px;
-    // margin: 0;
-    // text-align: center;
-    // clear:both;
 }
 
 // general
@@ -518,9 +402,6 @@ form.remove-form {
    .chat {
        width: 100%;
    }
-   // .centeredmenu {
-   //     margin-right: %;
-   // }
 }
 
 @media screen and (max-width: 800px) {
@@ -530,16 +411,9 @@ form.remove-form {
 }
 
 @media screen and (min-width: 788px) {
-    // .main {
-    //     width: 90%;
-    // }
-}
-
-@media screen and (min-width: 788px) {
     .centeredmenu {
         float: right;
         width: auto;
-        // margin-right: 5%;
     }
 }
 
@@ -547,18 +421,7 @@ form.remove-form {
     .centeredmenu {
         margin-right:5%;
     }
-
-    .chat-input {
-        // width: 100%;
-    }
 }
-
-@media screen and (min-width: 1000px) {
-    // .main {
-    //     width: 70%;
-    // }
-}
-
 
 @media screen and (min-width: 1000px) {
     .centeredmenu {

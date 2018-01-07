@@ -3109,7 +3109,6 @@ body {
   height: 100%; }
 
 .main {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -3247,9 +3246,8 @@ form.remove-form select {
     display: inline; }
   .about-page .wrap {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     align-items: flex-start;
-    flex-wrap: wrap;
     justify-content: flex-start; }
   .about-page section {
     background-color: white;
@@ -3281,7 +3279,7 @@ form.remove-form select {
 .messages {
   background-color: #eee;
   border: 10px solid #3b335e;
-  margin: 12px 0 0 0;
+  margin: 12px 0 0;
   padding: 12px;
   height: 220px;
   overflow: scroll;
