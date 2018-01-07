@@ -3202,12 +3202,17 @@ form.remove-form .add,
 form.login-form .add {
   margin: 0 0 0 8px; }
 
+form.remove-form select {
+  margin-bottom: 12px; }
+
 .output {
+  margin: 0 auto;
   height: 40px;
   padding: 12px;
   font-size: 20px;
   text-align: center;
-  line-height: 100%; }
+  line-height: 100%;
+  width: 500px; }
 
 .animate {
   opacity: 0;
@@ -3236,20 +3241,57 @@ form.login-form .add {
     opacity: 1; }
   100% {
     opacity: 0; } }
-img#express {
-  border-radius: 3px;
-  display: block;
-  margin: 0 auto;
-  width: 80%; }
+.about-page {
+  padding: 20px; }
+  .about-page h3 {
+    display: inline; }
+  .about-page .wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-start; }
+  .about-page section {
+    background-color: white;
+    margin: 12px;
+    height: auto;
+    width: 300px;
+    padding: 8px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px; }
+  .about-page p {
+    text-align: left !important; }
+  .about-page img {
+    float: right;
+    width: 100px; }
+  .about-page .githubLink {
+    float: left;
+    margin: 12px;
+    padding: 8px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px; }
+    .about-page .githubLink a {
+      padding-right: 8px; }
 
 .messages {
   background-color: #eee;
+  border: 10px solid #3b335e;
+  margin: 12px 0 0 0;
   padding: 12px;
   height: 220px;
   overflow: scroll;
   scroll-behavior: auto;
   color: #000;
-  border-radius: 3px; }
+  border-radius: 3px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  border-radius: 15px; }
 
 .feedback {
   color: #697130;
@@ -3275,6 +3317,21 @@ img#express {
   .update-page p,
   .pagenotfound p {
     text-align: center; }
+
+.admin {
+  padding: 20px; }
+  .admin .adminLink {
+    float: left;
+    margin: 12px;
+    padding: 8px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px; }
+  .admin a {
+    padding: 12px;
+    color: #1098ad; }
 
 .chat-input {
   width: 350px;
@@ -3313,7 +3370,8 @@ img#express {
 .message, .success, .error, .warning {
   border: 1px solid #ccc;
   padding: 10px;
-  color: #333; }
+  color: #333;
+  width: 100px; }
 
 .success {
   border-color: green; }

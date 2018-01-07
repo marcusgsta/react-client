@@ -260,6 +260,12 @@ form.login-form {
     }
 }
 
+form.remove-form {
+    select {
+        margin-bottom:12px;
+    }
+}
+
 .db_form {
     // margin: 0 auto;
     // width:70%;
@@ -267,11 +273,13 @@ form.login-form {
 }
 
 .output {
+    margin: 0 auto;
     height:40px;
     padding:12px;
     font-size:20px;
     text-align:center;
     line-height: 100%;
+    width:500px;
 }
 
 .animate {
@@ -304,21 +312,64 @@ form.login-form {
 
 // About
 
-img#express {
-    border-radius: $border-radius-base;
-    display: block;
-    margin: 0 auto;
-    width:80%;
+.about-page {
+    padding: 20px;
+
+    h3 {
+        display:inline;
+    }
+    .wrap {
+        display: flex;
+        flex-direction:row;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    section {
+        // flex-grow:1;
+        background-color: white;
+        margin: 12px;
+        height:auto;
+        width:300px;
+        padding: 8px;
+        @include border-radius(10px);
+    }
+
+    p {
+        text-align: left!important;
+    }
+
+    img {
+        float:right;
+        width: 100px;
+    }
+
+    .githubLink {
+        float:left;
+        margin: 12px;
+        padding: 8px;
+        background-color: white;
+        @include border-radius(10px);
+        a {
+            padding-right:8px;
+        }
+    }
 }
+
+
 
 .messages {
   background-color: #eee;
+  border:10px solid #3b335e;
+  margin: 12px 0 0 0;
   padding: 12px;
   height: 220px;
   overflow: scroll;
   scroll-behavior: auto;
   color: #000;
   border-radius: $border-radius-base;
+  @include border-radius(15px);
 }
 
 .feedback {
@@ -340,6 +391,22 @@ img#express {
     flex: 1;
     p {
         text-align: center;
+    }
+}
+
+.admin {
+    padding: 20px;
+    .adminLink {
+        float:left;
+        // width: 200px;
+        margin: 12px;
+        padding: 8px;
+        background-color: white;
+        @include border-radius(10px);
+    }
+    a {
+        padding: 12px;
+        color: #1098ad;
     }
 }
 
@@ -407,6 +474,7 @@ img#express {
   border: 1px solid #ccc;
   padding: 10px;
   color: #333;
+  width: 100px;
 }
 
 .success {
